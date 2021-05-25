@@ -3,12 +3,14 @@ package com.akbar.longwalks
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 data class DataCardView (
     val name: String,
-    val title: String
+    val title: String,
+    val image: Int
 )
 
 class CardViewAdapter(private var data: List<DataCardView>): RecyclerView.Adapter<CardViewAdapter.CardHolder>() {
@@ -24,12 +26,13 @@ class CardViewAdapter(private var data: List<DataCardView>): RecyclerView.Adapte
     override fun getItemCount(): Int = data.size
 
     class CardHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val title:TextView = view.findViewById(R.id.textView)
-        private val desc:TextView = view.findViewById(R.id.textView7)
-
+        private val title: TextView = view.findViewById(R.id.textView)
+        private val desc: TextView = view.findViewById(R.id.textView7)
+        private  val image: ImageView = view.findViewById(R.id.imageView6)
         fun bindHero(data: DataCardView) {
             title.text = data.title
             desc.text = data.name
+            image.setImageResource(data.image)
         }
     }
 }

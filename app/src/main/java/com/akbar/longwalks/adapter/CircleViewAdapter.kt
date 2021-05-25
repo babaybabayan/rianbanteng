@@ -11,7 +11,7 @@ import com.akbar.longwalks.R
 
 data class CircleData(
     val name: String,
-    val image: String
+    val image: Int
 )
 
 class CircleViewAdapter(private var data: List<CircleData>): RecyclerView.Adapter<CircleViewAdapter.CircleHolder>() {
@@ -21,7 +21,7 @@ class CircleViewAdapter(private var data: List<CircleData>): RecyclerView.Adapte
         private val image: ImageView = view.findViewById(R.id.imageView7)
         fun bind(data: CircleData) {
             title.text = data.name
-
+            image.setImageResource(data.image)
         }
     }
 
