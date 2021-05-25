@@ -2,6 +2,7 @@ package com.akbar.longwalks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,14 +10,34 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akbar.longwalks.adapter.CircleData
 import com.akbar.longwalks.adapter.CircleViewAdapter
 import com.akbar.longwalks.fragment.Home
+import com.akbar.longwalks.fragment.Search
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var ftItem: ImageView
+    lateinit var secItem: ImageView
+    lateinit var thItem: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         this.initView()
+
+        ftItem.setOnClickListener({
+            var home = Home()
+            this.setFragment(home)
+        })
+
+        secItem.setOnClickListener({
+            val item = Search()
+            this.setFragment(item)
+        })
+
+        thItem.setOnClickListener({
+            val item = Search()
+            this.setFragment(item)
+        })
 
     }
 
@@ -29,5 +50,9 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         var home = Home()
         this.setFragment(home)
+
+        this.ftItem = findViewById(R.id.firstItem)
+        this.secItem = findViewById(R.id.secondItem)
+        this.thItem = findViewById(R.id.thirdItem)
     }
 }
