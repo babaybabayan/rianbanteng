@@ -5,10 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.akbar.longwalks.R
+import com.akbar.longwalks.adapter.CircleData
+import com.akbar.longwalks.adapter.CircleMenuAdapter
+import com.akbar.longwalks.adapter.MenuData
 
 class Search : Fragment() {
 
+    lateinit var rvCard: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +25,34 @@ class Search : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        this.initView(view)
+    }
+
+    private fun initView(view: View) {
+        val listData = listOf(
+            MenuData("sun", true),
+            MenuData("mon", false),
+            MenuData("tue", false),
+            MenuData("wed", false),
+            MenuData("thu", false),
+            MenuData("fri", false),
+            MenuData("sat", false)
+        )
+
+        rvCard = view.findViewById(R.id.circle_menu)
+
+        val circleadapter = CircleMenuAdapter(listData)
+
+        rvCard.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = circleadapter
+        }
     }
 
 }
