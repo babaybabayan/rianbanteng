@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.akbar.longwalks.R
-import com.akbar.longwalks.adapter.CircleData
 import com.akbar.longwalks.adapter.CircleMenuAdapter
 import com.akbar.longwalks.adapter.MenuData
 
@@ -31,6 +30,10 @@ class Search : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val cardOne = MenuCardOneFragment()
+        val cardTwo = MenuCardOneFragment()
+        setFragment(cardOne)
+        setFragment2(cardTwo)
         this.initView(view)
     }
 
@@ -53,6 +56,20 @@ class Search : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = circleadapter
         }
+    }
+
+    private fun setFragment(fragment: Fragment) {
+        val fragmentManager = childFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.first_layout, fragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun setFragment2(fragment: Fragment) {
+        val fragmentManager = childFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.second_layout, fragment)
+        fragmentTransaction.commit()
     }
 
 }
